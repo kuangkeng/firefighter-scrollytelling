@@ -96,6 +96,9 @@ body {
   z-index: 999;
 }
 .scroll-text{
+  font-size: 24px;
+  color: #fff;
+  margin-top: 0px;
   border: 0px;
   padding: 5px 15px;
   border-radius: 5px;
@@ -103,15 +106,11 @@ body {
   margin:0 auto;
   background: rgba(0,0,0,.6);
   margin-bottom: 600px !important;
-}
-.scroll-text {
-  font-size: 24px;
-  color: #fff;
-  margin-top: 0px;
+  
 }
 
 .title {
-  color: #fff;
+  color:#c4c4c4;
   font-family: "Kelly Slab", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -125,27 +124,35 @@ body {
   color: #fff;
   position:absolute;
   bottom:3%;
-  left:5%;
+  right:5%;
   text-align: left;
   z-index: 300 !important;
   display: none;
 }
 
-#t7{
-  margin-bottom: 400px !important;
+#t8{
+  margin-bottom: 15% !important;
+  margin-left: 10px;
+  width:50%;
+  background: rgba(255,255,255,0);
 }
 
 h1 {
   margin-top: 0px;
+  font-size: 3em;
 }
 
-#tfirst, #tlast, #t11a {
+#tfirst, #tlast {
   border: 0px;
   background: rgba(255,255,255,0);
 }
 ul {
   list-style: none;
   padding: 0;
+}
+.inline-img {
+  height: 1em; /* Match the text height */
+  vertical-align: middle; /* Aligns the image with the text */
 }
 
 @media (max-width: 500px){
@@ -159,6 +166,16 @@ ul {
   .container {
     padding-left: 10px;
     padding-right: 10px;
+  }
+  #t8{
+    margin-left: 0 auto;
+    width:auto;
+    background: rgba(0,0,0,.6);
+    margin-bottom: 110% !important;
+  }
+  .title{
+    font-size: 2em;
+    line-height: 1.2;
   }
 }
 
@@ -176,7 +193,7 @@ ul {
        </svg>       
     </div>
     <div class="imagebox">
-      <div class="credit">Photo by <span id="credit_name">J Buckingham</span>/Maine Morning Star</div>
+      <div class="credit">Photo: <span id="credit_name">Jessica Buckingham</span></div>
     </div>
     <div id="map-texts">
       <div class="container">
@@ -193,18 +210,21 @@ ul {
             <p>For decades, PFAS in firefighting foam and turnout gear has exposed firefighters and their communities to a class of chemicals with numerous health risks, including cancer.</p>
           </li>
           <li id="t4" class="scroll-text">
-            <p>Maine has been at the forefront of policy measures to address PFAS. In 2021, the state restricted the sale of PFAS-laden firefighting foam and banned its use in training. The state prohibits the spreading of sludge to protect farmland and has done extensive testing of agricultural soils and waters. Maine has invested $70 million to support farmers and other residents affected by PFAS contamination from sludge.</p>
+            <p>Few fire stations have space to isolate gear and equipment with PFAS, and studies have founded elevated levels of these toxic chemicals in firehouse dust.</p>
           </li>
           <li id="t5" class="scroll-text">
-            <p>To date, firefighters have received no support to remove and replace foam that contains PFAS, assess potential medical impacts from past exposure, or determine where previous foam use may have contaminated water.</p>
+            <p>In 2021, Maine restricted the sale of PFAS-laden firefighting foam and banned its use in training. The state prohibits the spreading of wastewater sludge and has done extensive testing of agricultural soils and waters. Maine has invested $70 million to support farmers and other residents affected by tainted sludge.</p>
           </li>
           <li id="t6" class="scroll-text">
-            <p>Maine Morning Star and the Pulitzer Center teamed up to learn more about PFAS in and from firefighting—and what the State could do to reduce risks for first responders and communities.</p> 
+            <p>To date, firefighters have received no support to remove and replace foam that contains PFAS, assess potential medical impacts from past exposure, or determine where previous foam use may have contaminated water.</p>
           </li>
           <li id="t7" class="scroll-text">
-            <p><h1 class="title">A Fire Hose of ‘Forever Chemicals’</h1></p>
-            <p>by Marina Schauffler</p>
-            <p>This series was produced in partnership with the Pulitzer Center</p>
+            <p>Maine Morning Star and the Pulitzer Center teamed up to learn more about PFAS in and from firefighting—and what the State could do to reduce risks for first responders and communities.</p> 
+          </li>
+          <li id="t8" class="scroll-text">
+            <p><h1 class="title">A Fire Hose<br>of<br>‘Forever Chemicals’</h1></p>
+            <p><i>by Marina Schauffler</i></p>
+            <p>This series was produced in partnership with the <img src="./img/pulitzer-logo.png" alt="Icon" class="inline-img" alt='pulitzer center logo'></p>
           </li>
           <li id="tlast" class="scroll-text"></li>
         </ul> 
@@ -215,16 +235,17 @@ ul {
 <script type="text/javascript">
 
 if(window.innerWidth>500){
-
+  img_t8="url('./img/t8d.jpg')";
 } else if(window.innerWidth<500){
-
+  img_t8="url('./img/t8m.jpg')";
 }
 
 const credit_names = [
-"J Buckingham",
-"J Buckingham",
+"Jessica Buckingham",
+"Jessica Buckingham",
 "Holly S. Anderson",
-"NONE",
+"Brendan Bullock",
+"Marina Schauffler",
 "Brendan Bullock",
 "Brendan Bullock",
 "Brendan Bullock",
@@ -347,6 +368,25 @@ new Waypoint({
         $(this).css('background-image', 'url("./img/t6.jpg")').fadeTo(300, 1);
       });
       $('#credit_name').html(credit_names[5]);
+    }
+  },
+  offset: offsetVal,
+});
+
+new Waypoint({
+  element: document.getElementById('t8'),
+  handler: direction => {
+    if (direction === 'down') {
+      $('.imagebox').fadeTo(300, 0, function() {
+        $(this).css('background-image', img_t8).fadeTo(300, 1);
+        $(this).css('background-image', img_t8).fadeTo(300, 1);
+      });
+      $('#credit_name').html(credit_names[7]);
+    } else {
+      $('.imagebox').fadeTo(300, 0, function() {
+        $(this).css('background-image', 'url("./img/t7.jpg")').fadeTo(300, 1);
+      });
+      $('#credit_name').html(credit_names[6]);
     }
   },
   offset: offsetVal,
